@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <link rel="icon" href="./icon-192.png">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+
+            <div>
+                <h2>Student Hub</h2>
+                <span>BSIS 1-A</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-btn active" data-page="dashboard">
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+            <button class="nav-btn" data-page="schedule">
+                <span>▦</span>
+                Schedule
+            </button>
+
+            <button class="nav-btn" data-page="tasks">
+                <span>✓</span>
+                Assignments
+            </button>
+
+            <button class="nav-btn" data-page="subjects">
+                <span>▣</span>
+                Subjects
+            </button>
+
+            <button class="nav-btn" data-page="grades">
+                <span>◈</span>
+                Grades
+            </button>
+
+            <button class="nav-btn" data-page="reviewer">
+                <span>?</span>
+                Reviewer
+            </button>
+
+            <button class="nav-btn" data-page="budget">
+                <span>₱</span>
+                Budget
+            </button>
+
+            <button class="nav-btn" data-page="notes">
+                <span>✎</span>
+                Notes
+            </button>
+
+        </nav>
+
+        <button id="themeBtn" class="theme-btn">
+            ◐ <span>Dark Mode</span>
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- MOBILE HEADER -->
+        <div class="mobile-header">
+
+            <div>
+                <strong>🎓 Student Hub</strong>
+            </div>
+
+            <button id="mobileTheme">◐</button>
+
+        </div>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">WELCOME BACK 👋</p>
+
+                    <h1 id="greeting">
+                        Good day!
+                    </h1>
+
+                    <p id="currentDate"></p>
+                </div>
+
+            </header>
+
+
+            <!-- NEXT CLASS -->
+
+            <div class="next-class">
+
+                <div>
+
+                    <p class="next-label">
+                        NEXT CLASS
+                    </p>
+
+                    <h2 id="nextClassName">
+                        Checking schedule...
+                    </h2>
+
+                    <p id="nextClassInfo">
+                        Please wait...
+                    </p>
+
+                </div>
+
+                <div class="countdown-box">
+
+                    <span>STARTS IN</span>
+
+                    <strong id="countdown">
+                        --:--:--
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📚
+                    </div>
+
+                    <div>
+                        <span>Subjects</span>
+                        <strong>12</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📌
+                    </div>
+
+                    <div>
+                        <span>Assignments</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Completed</span>
+                        <strong id="completedTasks">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        %
+                    </div>
+
+                    <div>
+                        <span>Progress</span>
+                        <strong id="taskProgress">0%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <!-- TODAY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="eyebrow">TODAY</p>
+                            <h2>Today's Classes</h2>
+                        </div>
+
+                        <button
+                            class="small-btn"
+                            data-page-link="schedule">
+                            View all
+                        </button>
+
+                    </div>
+
+                    <div id="todayClasses"></div>
+
+                </div>
+
+
+                <!-- TASKS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="eyebrow">TASKS</p>
+                            <h2>Upcoming</h2>
+                        </div>
+
+                        <button
+                            class="small-btn"
+                            data-page-link="tasks">
+                            View all
+                        </button>
+
+                    </div>
+
+                    <div id="dashboardTasks"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SCHEDULE ================= -->
+
+        <section id="schedule" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">MY WEEK</p>
+                    <h1>Class Schedule</h1>
+                    <p>BSIS 1-A • 1st Semester</p>
+                </div>
+
+            </header>
+
+
+            <div class="schedule-container">
+
+                <!-- MONDAY -->
+
+                <div class="day">
+
+                    <div class="day-header monday">
+                        MONDAY
+                    </div>
+
+                    <div class="class-card blue-card">
+
+                        <strong>INFOSYS 01</strong>
+
+                        <span>7:00 – 8:30 AM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+
+                    <div class="class-card yellow-card">
+
+                        <strong>ICT 01</strong>
+
+                        <span>11:00 AM – 12:00 PM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+
+                    <div class="class-card purple-card">
+
+                        <strong>
+                            COMPUTER PROGRAMMING 1
+                        </strong>
+
+                        <span>2:00 – 4:00 PM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TUESDAY -->
+
+                <div class="day">
+
+                    <div class="day-header tuesday">
+                        TUESDAY
+                    </div>
+
+                    <div class="class-card pink-card">
+
+                        <strong>ICT 01</strong>
+
+                        <span>8:00 – 11:00 AM</span>
+
+                        <small>📍 CE-16 Lab</small>
+
+                    </div>
+
+
+                    <div class="class-card purple-card">
+
+                        <strong>GE 09</strong>
+
+                        <span>1:00 – 2:30 PM</span>
+
+                        <small>📍 LED-8</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WEDNESDAY -->
+
+                <div class="day">
+
+                    <div class="day-header wednesday">
+                        WEDNESDAY
+                    </div>
+
+                    <div class="class-card blue-card">
+
+                        <strong>INFOSYS 01</strong>
+
+                        <span>7:00 – 8:30 AM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+
+                    <div class="class-card green-card">
+
+                        <strong>PE 01</strong>
+
+                        <span>9:00 – 11:00 AM</span>
+
+                        <small>📍 GYM</small>
+
+                    </div>
+
+
+                    <div class="class-card yellow-card">
+
+                        <strong>ICT 01</strong>
+
+                        <span>11:00 AM – 12:00 PM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- THURSDAY -->
+
+                <div class="day">
+
+                    <div class="day-header thursday">
+                        THURSDAY
+                    </div>
+
+                    <div class="class-card blue-card">
+
+                        <strong>INFOSYS 02</strong>
+
+                        <span>7:00 – 10:00 AM</span>
+
+                        <small>📍 CE Lab-10</small>
+
+                    </div>
+
+
+                    <div class="class-card orange-card">
+
+                        <strong>INFOSYS 02</strong>
+
+                        <span>10:00 AM – 1:00 PM</span>
+
+                        <small>📍 CE Lab-10</small>
+
+                    </div>
+
+
+                    <div class="class-card purple-card">
+
+                        <strong>GE 09</strong>
+
+                        <span>1:00 – 2:30 PM</span>
+
+                        <small>📍 LED-8</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FRIDAY -->
+
+                <div class="day">
+
+                    <div class="day-header friday">
+                        FRIDAY
+                    </div>
+
+                    <div class="class-card teal-card">
+
+                        <strong>GEMST 03</strong>
+
+                        <span>7:00 – 9:00 AM</span>
+
+                        <small>📍 CE-12</small>
+
+                    </div>
+
+
+                    <div class="class-card teal-card">
+
+                        <strong>GEMST 03</strong>
+
+                        <span>3:30 – 5:00 PM</span>
+
+                        <small>📍 ICT-1</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ASSIGNMENTS ================= -->
+
+        <section id="tasks" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">STAY ORGANIZED</p>
+                    <h1>Assignments</h1>
+                    <p>Track your school requirements.</p>
+                </div>
+
+            </header>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>Add Assignment</h2>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <input
+                        id="taskName"
+                        type="text"
+                        placeholder="Assignment name">
+
+                    <select id="taskSubject">
+
+                        <option>INFOSYS 01</option>
+                        <option>INFOSYS 02</option>
+                        <option>ICT 01</option>
+                        <option>COMPUTER PROGRAMMING 1</option>
+                        <option>GE 09</option>
+                        <option>PE 01</option>
+                        <option>GEMST 03</option>
+
+                    </select>
+
+                    <input
+                        id="taskDate"
+                        type="date">
+
+                    <select id="taskPriority">
+
+                        <option value="High">
+                            🔴 High Priority
+                        </option>
+
+                        <option value="Medium">
+                            🟡 Medium Priority
+                        </option>
+
+                        <option value="Low">
+                            🟢 Low Priority
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="addTaskBtn">
+                    + Add Assignment
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>My Assignments</h2>
+
+                    <span id="taskSummary"></span>
+
+                </div>
+
+                <div id="taskList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SUBJECTS ================= -->
+
+        <section id="subjects" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">MY COURSES</p>
+                    <h1>Subjects</h1>
+                    <p>BSIS 1-A • 1st Semester</p>
+                </div>
+
+            </header>
+
+
+            <div class="subjects-grid">
+
+                <div class="subject-card">
+                    <span>INFOSYS 01</span>
+                    <h3>Information Systems 01</h3>
+                    <button data-note="INFOSYS 01">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>INFOSYS 02</span>
+                    <h3>Information Systems 02</h3>
+                    <button data-note="INFOSYS 02">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>ICT 01</span>
+                    <h3>Information & Communication Technology</h3>
+                    <button data-note="ICT 01">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>PROGRAMMING</span>
+                    <h3>Computer Programming 1</h3>
+                    <button data-note="COMPUTER PROGRAMMING 1">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>GE 09</span>
+                    <h3>General Education 09</h3>
+                    <button data-note="GE 09">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>PE 01</span>
+                    <h3>Physical Education 01</h3>
+                    <button data-note="PE 01">
+                        Open Notes →
+                    </button>
+                </div>
+
+
+                <div class="subject-card">
+                    <span>GEMST 03</span>
+                    <h3>GEMST 03</h3>
+                    <button data-note="GEMST 03">
+                        Open Notes →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GRADES ================= -->
+
+        <section id="grades" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">ACADEMIC</p>
+                    <h1>Grade Calculator</h1>
+                    <p>Calculate an estimated subject grade.</p>
+                </div>
+
+            </header>
+
+
+            <div class="panel grade-panel">
+
+                <select id="gradeSubject">
+
+                    <option>INFOSYS 01</option>
+                    <option>INFOSYS 02</option>
+                    <option>ICT 01</option>
+                    <option>COMPUTER PROGRAMMING 1</option>
+                    <option>GE 09</option>
+                    <option>PE 01</option>
+                    <option>GEMST 03</option>
+
+                </select>
+
+
+                <label>Activities / Performance</label>
+
+                <input
+                    id="activityScore"
+                    type="number"
+                    min="0"
+                    max="100"
+                    placeholder="0 – 100">
+
+
+                <label>Quizzes</label>
+
+                <input
+                    id="quizScore"
+                    type="number"
+                    min="0"
+                    max="100"
+                    placeholder="0 – 100">
+
+
+                <label>Exam</label>
+
+                <input
+                    id="examScore"
+                    type="number"
+                    min="0"
+                    max="100"
+                    placeholder="0 – 100">
+
+
+                <button
+                    class="primary-btn"
+                    id="calculateGradeBtn">
+                    Calculate Grade
+                </button>
+
+
+                <div
+                    id="gradeResult"
+                    class="grade-result">
+
+                    <span>Estimated Grade</span>
+
+                    <strong id="finalGrade">
+                        —
+                    </strong>
+
+                    <small id="gradeMessage">
+                        Enter your scores above.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REVIEWER ================= -->
+
+        <section id="reviewer" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">TEST YOURSELF</p>
+                    <h1>Reviewer</h1>
+                    <p>Practice your computer fundamentals.</p>
+                </div>
+
+            </header>
+
+
+            <div class="panel quiz-panel">
+
+                <div id="quizArea"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BUDGET ================= -->
+
+        <section id="budget" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">MONEY TRACKER</p>
+                    <h1>Student Budget</h1>
+                    <p>Keep track of your allowance.</p>
+                </div>
+
+            </header>
+
+
+            <div class="budget-stats">
+
+                <div class="money-card">
+                    <span>Allowance</span>
+                    <strong id="allowanceDisplay">
+                        ₱0.00
+                    </strong>
+                </div>
+
+                <div class="money-card">
+                    <span>Expenses</span>
+                    <strong id="expenseDisplay">
+                        ₱0.00
+                    </strong>
+                </div>
+
+                <div class="money-card">
+                    <span>Remaining</span>
+                    <strong id="remainingDisplay">
+                        ₱0.00
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>Set Allowance</h2>
+
+                <div class="inline-form">
+
+                    <input
+                        id="allowanceInput"
+                        type="number"
+                        placeholder="Example: 100">
+
+                    <button
+                        class="primary-btn"
+                        id="saveAllowanceBtn">
+                        Save
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>Add Expense</h2>
+
+                <div class="inline-form">
+
+                    <input
+                        id="expenseName"
+                        placeholder="Expense name">
+
+                    <input
+                        id="expenseAmount"
+                        type="number"
+                        placeholder="Amount">
+
+                    <button
+                        class="primary-btn"
+                        id="addExpenseBtn">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>Expenses</h2>
+
+                <div id="expenseList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NOTES ================= -->
+
+        <section id="notes" class="page">
+
+            <header class="page-header">
+
+                <div>
+                    <p class="eyebrow">STUDY NOTES</p>
+                    <h1>My Notes</h1>
+                    <p>Your notes are saved automatically.</p>
+                </div>
+
+            </header>
+
+
+            <div class="panel">
+
+                <select id="noteSubject">
+
+                    <option>INFOSYS 01</option>
+                    <option>INFOSYS 02</option>
+                    <option>ICT 01</option>
+                    <option>COMPUTER PROGRAMMING 1</option>
+                    <option>GE 09</option>
+                    <option>PE 01</option>
+                    <option>GEMST 03</option>
+
+                </select>
+
+
+                <textarea
+                    id="notesBox"
+                    placeholder="Write your notes here...">
+                </textarea>
+
+
+                <div class="save-status">
+                    ✓ Automatically saved
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+    <script src="./script.js"></script>
+
+</html>
