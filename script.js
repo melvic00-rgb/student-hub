@@ -1691,3 +1691,171 @@ if ("serviceWorker" in navigator) {
             });
     });
 }
+
+/* =====================================================
+   PREMIUM PWA FEATURES
+===================================================== */
+
+
+/* ================= SPLASH SCREEN ================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        const splash =
+            document.getElementById(
+                "splashScreen"
+            );
+
+        if (splash) {
+
+            splash.classList.add(
+                "hide"
+            );
+
+        }
+
+    }, 1000);
+
+});
+
+
+/* ================= CONNECTION STATUS ================= */
+
+const connectionStatus =
+    document.getElementById(
+        "connectionStatus"
+    );
+
+const connectionText =
+    document.getElementById(
+        "connectionText"
+    );
+
+
+function updateConnectionStatus() {
+
+    if (!connectionStatus) return;
+
+
+    if (navigator.onLine) {
+
+        connectionStatus.classList.remove(
+            "offline"
+        );
+
+        connectionText.textContent =
+            "Online";
+
+    } else {
+
+        connectionStatus.classList.add(
+            "offline"
+        );
+
+        connectionText.textContent =
+            "Offline";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "online",
+    updateConnectionStatus
+);
+
+
+window.addEventListener(
+    "offline",
+    updateConnectionStatus
+);
+
+
+updateConnectionStatus();
+
+
+/* ================= MOBILE NAVIGATION ================= */
+
+const mobileNavButtons =
+    document.querySelectorAll(
+        ".mobile-nav-btn"
+    );
+
+
+mobileNavButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const page =
+                button.dataset.page;
+
+
+            openPage(page);
+
+
+            mobileNavButtons.forEach(
+                item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+});
+
+
+/* Keep mobile navigation synchronized */
+
+const originalOpenPage =
+    window.openPage;
+
+
+/* ================= INSTALL PROMPT ================= */
+
+let deferredInstallPrompt = null;
+
+
+window.addEventListener(
+    "beforeinstallprompt",
+    event => {
+
+        event.preventDefault();
+
+        deferredInstallPrompt =
+            event;
+
+        console.log(
+            "Student Hub can be installed."
+        );
+
+    }
+);
+
+
+window.addEventListener(
+    "appinstalled",
+    () => {
+
+        deferredInstallPrompt = null;
+
+        console.log(
+            "Student Hub installed successfully!"
+        );
+
+    }
+);

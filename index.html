@@ -16,6 +16,20 @@
 
 <body>
 
+    <!-- APP SPLASH SCREEN -->
+<div id="splashScreen">
+    <div class="splash-logo">🎓</div>
+    <h1>Student Hub</h1>
+    <p>Loading your school planner...</p>
+    <div class="splash-loader"></div>
+</div>
+
+<!-- CONNECTION STATUS -->
+<div id="connectionStatus">
+    <span id="connectionDot"></span>
+    <span id="connectionText">Online</span>
+</div>
+
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
@@ -75,6 +89,36 @@
         <button id="themeBtn" class="theme-btn">
             ◐ <span>Dark Mode</span>
         </button>
+
+        <!-- MOBILE APP NAVIGATION -->
+<div class="mobile-nav">
+
+    <button class="mobile-nav-btn active" data-page="dashboard">
+        <span>⌂</span>
+        <small>Home</small>
+    </button>
+
+    <button class="mobile-nav-btn" data-page="schedule">
+        <span>▦</span>
+        <small>Schedule</small>
+    </button>
+
+    <button class="mobile-nav-btn" data-page="tasks">
+        <span>✓</span>
+        <small>Tasks</small>
+    </button>
+
+    <button class="mobile-nav-btn" data-page="subjects">
+        <span>▣</span>
+        <small>Subjects</small>
+    </button>
+
+    <button class="mobile-nav-btn" data-page="notes">
+        <span>✎</span>
+        <small>Notes</small>
+    </button>
+
+</div>
 
     </aside>
 
