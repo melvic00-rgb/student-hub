@@ -1,4 +1,4 @@
-const CACHE_NAME = "student-hub-v1";
+const CACHE_NAME = "student-hub-v2";
 
 const APP_FILES = [
     "./",
