@@ -1,8 +1,8 @@
 {
   "name": "Student Hub",
   "short_name": "Student Hub",
-  "description": "My personal school planner",
-  "start_url": "./",
+  "description": "My personal school planner \u2014 offline-first",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",

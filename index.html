@@ -202,7 +202,7 @@
 
                     <div>
                         <span>Subjects</span>
-                        <strong>7</strong>
+                        <strong>12</strong>
                     </div>
 
                 </div>
@@ -955,12 +955,11 @@
         </section>
 
     </main>
-
-
-    <script src="script.js"></script>
-
-</body>
-
     <script src="./script.js"></script>
-
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(console.error));
+}
+</script>
+</body>
 </html>
